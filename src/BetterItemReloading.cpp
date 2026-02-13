@@ -1,6 +1,7 @@
 #include "Chat.h"
 #include "Player.h"
 #include "Opcodes.h"
+#include "RaceMgr.h"
 #include "Spell.h"
 #include "SpellMgr.h"
 #include "ScriptMgr.h"
@@ -274,7 +275,7 @@ public:
                     if (!(itemTemplate->AllowableClass & CLASSMASK_ALL_PLAYABLE))
                         LOG_ERROR("sql.sql", "Item (Entry: {}) does not have any playable classes ({}) in `AllowableClass` and can't be equipped or used.", entry, itemTemplate->AllowableClass);
 
-                    if (!(itemTemplate->AllowableRace & RACEMASK_ALL_PLAYABLE))
+                    if (!(itemTemplate->AllowableRace & sRaceMgr->GetPlayableRaceMask()))
                         LOG_ERROR("sql.sql", "Item (Entry: {}) does not have any playable races ({}) in `AllowableRace` and can't be equipped or used.", entry, itemTemplate->AllowableRace);
                 }
             }
